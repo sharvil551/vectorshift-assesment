@@ -14,7 +14,7 @@ app.add_middleware(
 
 @app.get('/')
 def read_root():
-    return {status_code: 200, detail: "API is up and running 🚀"}
+    return {"status_code": 200, "message": "API is up and running 🚀"}
 
 @app.post("/pipelines/parse")
 async def parse_pipeline(request: Request):
