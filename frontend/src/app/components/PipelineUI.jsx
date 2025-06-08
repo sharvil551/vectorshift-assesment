@@ -9,11 +9,11 @@ import { LLMNode } from "../nodes/LLMNode";
 import { OutputNode } from "../nodes/OutputNode";
 import { TextNode } from "../nodes/TextNode";
 import { AnalyticsNode } from "../nodes/AnalyticsNode";
-import { JsonPreviewNode } from "../nodes/JSONPreviewNode";
 import { FileUploaderNode } from "../nodes/FileUploaderNode";
 import { WordCounterNode } from "../nodes/WordCounterNode";
 import { DBExplorerNode } from "../nodes/DBExplorerNode";
 import { COMPONENT_TYPES } from "../../helpers/enums";
+import { JsonPreviewNode } from "../nodes/JsonPreviewNode";
 
 const gridSize = 20;
 const proOptions = { hideAttribution: true };
