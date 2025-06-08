@@ -1,4 +1,3 @@
-import "./App.css";
 import { SubmitButton } from "./app/components/SubmitButton";
 import { PipelineToolbar } from "./app/components/PipelineToolbar";
 import { PipelineUI } from "./app/components/PipelineUI";

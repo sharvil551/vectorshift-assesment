@@ -30,37 +30,18 @@ const nodeTypes = {
   [COMPONENT_TYPES.DB_EXPLORER.type]: DBExplorerNode,
 };
 
-// const selector = (state) => ({
-//   nodes: state.nodes,
-//   edges: state.edges,
-//   getNodeID: state.getNodeID,
-//   addNode: state.addNode,
-//   onNodesChange: state.onNodesChange,
-//   onEdgesChange: state.onEdgesChange,
-//   onConnect: state.onConnect,
-// });
-
 export const PipelineUI = () => {
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
-  // const {
-  //   nodes,
-  //   edges,
-  //   getNodeID,
-  //   addNode,
-  //   onNodesChange,
-  //   onEdgesChange,
-  //   onConnect
-  // } = useStore(selector, shallow);
-
-  const nodes = useStore((state) => state.nodes, shallow);
-  const edges = useStore((state) => state.edges, shallow);
-  const getNodeID = useStore((state) => state.getNodeID, shallow);
-  const addNode = useStore((state) => state.addNode, shallow);
-  const onNodesChange = useStore((state) => state.onNodesChange, shallow);
-  const onEdgesChange = useStore((state) => state.onEdgesChange, shallow);
-  const onConnect = useStore((state) => state.onConnect, shallow);
-
+  const {
+    nodes,
+    edges,
+    getNodeID,
+    addNode,
+    onNodesChange,
+    onEdgesChange,
+    onConnect,
+  } = useStore((state) => state, shallow);
   const getInitNodeData = (nodeID, type) => {
     let nodeData = { id: nodeID, nodeType: `${type}` };
     return nodeData;
@@ -108,20 +89,7 @@ export const PipelineUI = () => {
 
   return (
     <>
-      {/* <div className="absolute top-30 left-1 bg-white  shadow-lg rounded-lg p-4 w-auto border border-gray-200">
-        <h2 className="text-sm font-semibold text-gray-700 mb-3">
-          Pipeline Status
-        </h2>
-        <div className="flex justify-between items-center text-sm text-gray-600 mb-2">
-          <span>Nodes</span>
-          <span className="font-bold text-indigo-600">{nodes.length}</span>
-        </div>
-        <div className="flex justify-between items-center text-sm text-gray-600">
-          <span>Edges</span>
-          <span className="font-bold text-indigo-600">{edges.length}</span>
-        </div>
-      </div> */}
-      <div ref={reactFlowWrapper} style={{ width: "100wv", height: "70vh" }}>
+      <div ref={reactFlowWrapper} className="h-[75vh] w-[100vw]">
         <ReactFlow
           nodes={nodes}
           edges={edges}
@@ -137,8 +105,21 @@ export const PipelineUI = () => {
           connectionLineType="smoothstep"
           //  noDragClassName='drag-handle'
           noWheelClassName="drag-handle"
+          defaultEdgeOptions={{
+            style: {
+              stroke: "var(--primary)",
+              strokeDasharray: "4 2",
+              strokeWidth: 2.5,
+            },
+          }}
+          defaultMarkerColor="none"
+          connectionLineStyle={{
+            stroke: "var(--primary)",
+            strokeDasharray: "4 2",
+            strokeWidth: 2.5,
+          }}
         >
-          <Background color="#aaa" gap={gridSize} />
+          <Background gap={gridSize} />
           <Controls />
           <MiniMap />
         </ReactFlow>

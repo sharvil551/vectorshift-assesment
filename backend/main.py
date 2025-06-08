@@ -5,13 +5,16 @@ import networkx as nx
 
 app = FastAPI()
 
-# Enable CORS if needed
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.get('/')
+def read_root():
+    return {status_code: 200, detail: "API is up and running 🚀"}
 
 @app.post("/pipelines/parse")
 async def parse_pipeline(request: Request):
@@ -20,7 +23,7 @@ async def parse_pipeline(request: Request):
     edges = data.get("edges", [])
     
 
-    # Basic validations with proper error responses
+    # Basic validations
     if len(nodes) == 0:
         raise HTTPException(status_code=400, detail="No nodes found in the pipeline. Please add at least one node.")
 
@@ -28,7 +31,7 @@ async def parse_pipeline(request: Request):
         raise HTTPException(status_code=400, detail="A single node without any connections is not a valid pipeline.")
 
     if len(nodes) > 1 and len(edges) == 0:
-        raise HTTPException(status_code=400, detail="Multiple nodes detected but no edges found. Connect the nodes to define a valid pipeline.")
+        raise HTTPException(status_code=400, detail="Multiple nodes detected, but no connections found. Connect the nodes to form a valid pipeline.")
 
     # Build graph and check DAG
     G = nx.DiGraph()

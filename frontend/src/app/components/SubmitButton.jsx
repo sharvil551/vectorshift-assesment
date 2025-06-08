@@ -2,19 +2,25 @@ import { toast } from "sonner";
 import { useStore } from "../../store";
 import { shallow } from "zustand/shallow";
 import { PipelineResult } from "./PipelineResult";
+import { ENV_BASE_URL } from "@/environment/environment";
+import { useState } from "react";
+import { HTTP_METHODS, TOAST_POSITION, TOAST_TYPE } from "@/helpers/enums";
+import { Button } from "@/components/ui/button";
+import { FaProjectDiagram, FaSpinner } from "react-icons/fa";
 
 export const SubmitButton = () => {
-  const nodes = useStore((state) => state.nodes, shallow);
-  const edges = useStore((state) => state.edges, shallow);
+  const [loading, setLoading] = useState(false);
+  const { nodes, edges } = useStore((state) => state, shallow);
 
   const handleSubmit = async () => {
     try {
+      setLoading(true);
       const payload = {
         nodes,
         edges,
       };
-      const response = await fetch("http://localhost:8000/pipelines/parse", {
-        method: "POST",
+      const response = await fetch(`${ENV_BASE_URL}/pipelines/parse`, {
+        method: HTTP_METHODS.POST,
         headers: {
           "Content-Type": "application/json",
         },
@@ -22,31 +28,46 @@ export const SubmitButton = () => {
       });
       const data = await response.json();
       if (response.ok) {
-        toast.success(<PipelineResult data={data} />, {
+        toast[TOAST_TYPE.SUCCESS](<PipelineResult data={data} />, {
           className: "max-w-[250px]",
-          position: "top-right",
+          position: TOAST_POSITION.TOP_RIGHT,
         });
       } else {
-        toast.error(data.detail, {
-          position: "top-right",
+        toast[TOAST_TYPE.ERROR](data.detail, {
+          position: TOAST_POSITION.TOP_RIGHT,
         });
-        return;
       }
     } catch (error) {
       console.error("Network Error:", error);
-      toast.error("Could not connect to the server", { position: "top-right" });
+      toast.error("Could not connect to the server", {
+        position: TOAST_POSITION.TOP_RIGHT,
+      });
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="flex justify-center items-center ">
-      <button
+      <Button
+        variant="outline"
         type="button"
         onClick={handleSubmit}
-        className="focus:outline-none text-white bg-[#6466f1] hover:bg-[#4e50e8] active:scale-95 hover:shadow-lg transition-all duration-200 font-medium rounded-lg text-sm px-5 py-2.5 cursor-pointer"
+        className="focus:outline-none text-white bg-primary hover:bg-primary-hover active:scale-95 hover:shadow-lg transition-all duration-200 font-medium rounded-lg text-sm px-5 py-2.5 cursor-pointer w-30"
+        disabled={loading}
       >
-        Submit
-      </button>
+        {loading ? (
+          <>
+            <span>Submitting</span>
+            <FaSpinner className="animate-spin" />
+          </>
+        ) : (
+          <>
+            <span>Submit</span>
+            <FaProjectDiagram className="ml-1" />
+          </>
+        )}
+      </Button>
     </div>
   );
 };
