@@ -9,10 +9,10 @@ import {
 import NodeHeader from "../components/NodeHeader";
 import { NodeHandle } from "../components/NodeHandle";
 
- const generateJsonData = () => ({
+const generateJsonData = () => ({
   id: Math.floor(Math.random() * 1000),
   user: {
-    name: "Albert Mao" ,
+    name: "Albert Mao",
     age: Math.floor(Math.random() * 40 + 20),
     active: Math.random() > 0.5,
   },
@@ -38,7 +38,7 @@ export function JsonPreviewNode({ id }) {
         <div className="flex justify-center">
           <button
             onClick={generateJson}
-            className="focus:outline-none text-white bg-primary hover:bg-[#4e50e8] active:scale-95 hover:shadow-lg transition-all duration-200 font-medium rounded-lg text-sm px-2 py-1 cursor-pointer"
+            className="focus:outline-none text-white bg-primary hover:bg-primary-hover active:scale-95 hover:shadow-lg transition-all duration-200 font-medium rounded-lg text-sm px-2 py-1 cursor-pointer"
           >
             Generate
           </button>

@@ -11,13 +11,20 @@ import { FaProjectDiagram, FaSpinner } from "react-icons/fa";
 export const SubmitButton = () => {
   const [loading, setLoading] = useState(false);
   const { nodes, edges } = useStore((state) => state, shallow);
-
   const handleSubmit = async () => {
     try {
       setLoading(true);
       const payload = {
-        nodes,
-        edges,
+        nodes: nodes.map((node) => ({
+          id: node.id,
+          position: node.position,
+          type: node.type,
+        })),
+        edges: edges.map((edge) => ({
+          id: edge.id,
+          source: edge.source,
+          target: edge.target,
+        })),
       };
       const response = await fetch(`${ENV_BASE_URL}/pipelines/parse`, {
         method: HTTP_METHODS.POST,

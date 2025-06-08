@@ -58,7 +58,7 @@ export const DBExplorerNode = ({ id, data }) => {
       />
 
       <div className="px-3 pt-1">
-        <div className="bg-[#e5e7fb] text-center text-xs text-gray-700 py-1 rounded font-mono">
+        <div className="bg-node-border text-center text-xs text-gray-700 py-1 rounded font-mono">
           {currName}
         </div>
       </div>
@@ -74,10 +74,10 @@ export const DBExplorerNode = ({ id, data }) => {
             </div>
           </div>
           <Select value={env} onValueChange={(value) => setEnv(value)}>
-            <SelectTrigger className="w-full text-sm rounded-lg border border-[#e5e7fb] bg-white focus:ring-[#635bc8] focus:border-[#635bc8] transition">
+            <SelectTrigger className="w-full text-sm rounded-lg border border-node-border bg-white focus:ring-primary focus:border-primary transition">
               <SelectValue placeholder="Choose environment" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="w-full text-sm rounded-lg border border-node-border bg-white  focus:ring-primary focus:border-primary transition duration-150 ease-in-out">
               <SelectGroup>
                 <SelectItem value="local">Local</SelectItem>
                 <SelectItem value="dev">Development</SelectItem>
@@ -129,6 +129,11 @@ export const DBExplorerNode = ({ id, data }) => {
             id: `${id}-target`,
             type: HANDLE_TYPE.TARGET,
             position: HANDLE_POSITIONS.LEFT,
+          },
+           {
+            id: `${id}-source`,
+            type: HANDLE_TYPE.SOURCE,
+            position: HANDLE_POSITIONS.RIGHT,
           },
         ]}
       />

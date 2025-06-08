@@ -14,6 +14,7 @@
   --color-toolbar-border: var(--toolbar-border);
   --color-node-border: var(--node-border);
   --color-node-header-bg: var(--primary-hover-bg);
+  --color-text-selection: var(--text-selection-bg);
 
 
   --radius-sm: calc(var(--radius) - 4px);
@@ -82,6 +83,7 @@
   --toolbar-border: #e5e5e5;
 
   --node-border: #d6d6ff;
+  --text-selection-bg: #7070ebbb;
 
   --radius: 0.625rem;
 

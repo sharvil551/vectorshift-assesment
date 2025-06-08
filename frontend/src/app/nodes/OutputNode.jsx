@@ -35,7 +35,7 @@ export const OutputNode = ({ id, data }) => {
         description={COMPONENT_TYPES.CUSTOM_OUTPUT.description}
       />
       <div className="p-3 pt-1">
-        <div className="bg-[#e5e7fb] text-center text-xs text-gray-600 py-1 rounded font-mono">
+        <div className="bg-node-border text-center text-xs text-gray-600 py-1 rounded font-mono">
           {currName}
         </div>
       </div>
@@ -44,17 +44,16 @@ export const OutputNode = ({ id, data }) => {
         <div className="flex flex-col space-y-1">
           <div className="flex justify-between items-center px-1">
             <label htmlFor={outputType}>Type</label>
-            <div className="bg-primary text-white text-[10px] font-medium px-0.5 py-0.5 rounded-sm border border-[#6466f1]">
+            <div className="bg-primary text-white text-[10px] font-medium px-0.5 py-0.5 rounded-sm border border-primary">
               Dropdown
             </div>
           </div>
           <Select value={outputType} onValueChange={handleTypeChange}>
-            <SelectTrigger className="w-full text-sm rounded-lg border border-[#e5e7fb] bg-white  focus:ring-[#635bc8] focus:border-[#635bc8] transition duration-150 ease-in-out">
+            <SelectTrigger className="w-full text-sm rounded-lg border border-node-border bg-white  focus:ring-primary focus:border-primary transition duration-150 ease-in-out">
               <SelectValue placeholder="Select type" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="w-full text-sm rounded-lg border border-node-border bg-white  focus:ring-primary focus:border-primary transition duration-150 ease-in-out">
               <SelectGroup>
-                {/* <SelectLabel>Select Type</SelectLabel> */}
                 <SelectItem value="Text">Text</SelectItem>
                 <SelectItem value="File">File</SelectItem>
               </SelectGroup>

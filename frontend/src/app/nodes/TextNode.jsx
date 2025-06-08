@@ -27,7 +27,7 @@ export const TextNode = ({ id, data }) => {
 
       // Adjust width based on content
       const minWidth = 230;
-      const maxWidth = 600;
+      const maxWidth = 500;
       const scrollWidth = textarea.scrollWidth + 48; // extra for padding/icons
       const newWidth = Math.min(Math.max(minWidth, scrollWidth), maxWidth);
       container.style.width = `${newWidth}px`;
@@ -96,7 +96,7 @@ export const TextNode = ({ id, data }) => {
             <label htmlFor={`${id}-system`} className="text-xs text-gray-700">
               Enter text
             </label>
-            <div className="bg-primary text-white text-[10px] font-medium px-0.5 py-0.5 rounded-sm border border-[#6466f1]">
+            <div className="bg-primary text-white text-[10px] font-medium px-0.5 py-0.5 rounded-sm border border-primary">
               Text
             </div>
           </div>
@@ -107,7 +107,7 @@ export const TextNode = ({ id, data }) => {
             value={currText}
             onChange={handleTextChange}
             placeholder="Enter text in form of {{input}}"
-            className="resize-none text-sm rounded-lg border border-[#e5e7fb] bg-white focus:outline-none focus:ring-[#635bc8] focus:border-[#635bc8] transition duration-150 ease-in-out h-auto min-w-[200px]"
+            className="resize-none text-sm rounded-lg border border-node-border bg-white focus:outline-none focus:ring-primary focus:border-primary transition duration-150 ease-in-out h-auto min-w-[200px] selection:bg-text-selection selection:text-white drag-handle"
           />
         </div>
       </div>

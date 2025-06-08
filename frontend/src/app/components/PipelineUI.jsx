@@ -109,14 +109,14 @@ export const PipelineUI = () => {
             style: {
               stroke: "var(--primary)",
               strokeDasharray: "4 2",
-              strokeWidth: 2.5,
+              strokeWidth: 2,
             },
           }}
           defaultMarkerColor="none"
           connectionLineStyle={{
             stroke: "var(--primary)",
             strokeDasharray: "4 2",
-            strokeWidth: 2.5,
+            strokeWidth: 2,
           }}
         >
           <Background gap={gridSize} />

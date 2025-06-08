@@ -27,12 +27,12 @@ export const WordCounterNode = ({ id }) => {
         <div className="flex flex-col space-y-1">
           <div className="flex justify-between items-center px-1">
             <div />
-            <div className="bg-primary text-white text-[10px] font-medium px-0.5 py-0.5 rounded-sm border border-[#6466f1]">
+            <div className="bg-primary text-white text-[10px] font-medium px-0.5 py-0.5 rounded-sm border border-primary">
               Text
             </div>
           </div>
           <Textarea
-            className="w-full h-24 overflow-y-auto resize-none rounded border border-gray-300 p-2 text-sm border-[#e5e7fb] bg-white focus:outline-none focus:ring-[#635bc8] focus:border-[#635bc8] transition duration-150 ease-in-out drag-handle"
+            className="w-full h-24 overflow-y-auto resize-none rounded border border-gray-300 p-2 text-sm border-node-border bg-white focus:outline-none focus:ring-primary focus:border-primary transition duration-150 ease-in-out selection:bg-text-selection selection:text-white drag-handle"
             placeholder="Enter your text here..."
             value={text}
             onChange={(e) => setText(e.target.value)}

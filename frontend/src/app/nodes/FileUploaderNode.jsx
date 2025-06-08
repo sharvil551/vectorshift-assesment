@@ -38,7 +38,7 @@ export function FileUploaderNode({ id }) {
             className="block w-full text-sm text-gray-500 file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-primary cursor-pointer border-0 shadow-none"
           />
 
-          <div className="bg-[#f9f9ff] p-2 mt-2 rounded-md text-[11px] min-h-[60px] transition-all duration-300">
+          <div className="bg-node-header-bg p-2 mt-2 rounded-md text-[11px] min-h-[60px] transition-all duration-300">
             {fileInfo ? (
               <>
                 <div>
